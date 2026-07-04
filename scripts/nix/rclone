@@ -1,0 +1,6 @@
+#!/bin/sh
+# rclone — rendered by install-rclone.py; do not edit by hand
+_cfg="${XDG_CONFIG_HOME:-$HOME/.config}/rclone-tool/env"
+[ -f "$_cfg" ] && . "$_cfg"
+_bin="${XDG_DATA_HOME:-$HOME/.local/share}/rclone-tool/__RCLONE_VERSION__/rclone"
+exec "$_bin" "$@"
