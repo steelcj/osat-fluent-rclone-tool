@@ -1,12 +1,19 @@
 # osat-fluent-rclone-tool
 
+Version: 0.1.5
+Status: Draft
+Style Guide: style-guide--technical-documentation-for-technologists-v0.2.0
+Pattern: osat-fluent--archetype-5--self-contained-binary-v0-1-1
+
+## Description
+
 An OSAT Fluent manager for [rclone](https://rclone.org/). Installs rclone for the current user without elevation, verifies every download against the published SHA-256 checksums (including rclone's PGP-clearsigned `SHA256SUMS`), archives a verified copy locally so a version already installed once can be restored without a network request, and renders a platform-native wrapper, including full `.cmd` and `.ps1` wrappers on Windows, so the installed version runs from anywhere on PATH.
 
-Follows the [OSAT Fluent Archetype 5 pattern](https://github.com/steelcj/osat-fluent) for self-contained binaries.
+Follows the [OSAT Fluent Archetype 5 pattern](https://github.com/steelcj/osat-fluent) for self-contained binaries distributed via GitHub Releases.
 
 ## Naming
 
-This repository is named `osat-fluent-rclone-tool`, not `osat-fluent-rclone-manager`, even though `install-rclone.py` is described here as a manager rather than an installer. These are two different decisions. The repository suffix, `-tool`, names what kind of thing this repository is: one packaged tool in the OSAT (OS-Agnostic Tools) collection, consistent with every other repository in the collection. `manager` describes what the script inside it does: it installs, but it also detects drift, restores from a local archive, and leaves prior versions in place for rollback, more than the word "installer" alone implies. The script's filename stays `install-rclone.py`, since running it for the first time is, in fact, an install.
+This repository is named `osat-fluent-rclone-tool`, not `osat-fluent-rclone-manager`, even though `install-rclone.py` is described below as a manager rather than an installer. These are two different naming decisions. The repository suffix, `-tool`, names what kind of thing this repository is: one packaged tool in the OSAT (OS-Agnostic Tools) collection, consistent with every other repository in the collection. `manager` describes what the script inside it does: it installs, but it also detects drift, restores from a local archive, and leaves prior versions in place for rollback, more than the word "installer" alone implies. The script's filename stays `install-rclone.py`, since running it for the first time is, in fact, an install; the broader behaviour is described in prose, here and in code comments, rather than in the filename.
 
 This repository's own management directories are named `rclone-tool`, not `rclone`, so they never collide with rclone's own configuration directory at `~/.config/rclone/rclone.conf`. See `osat--user-space-installation-specification` section 10.7 for the full rationale; this repository is the worked example that section is built on.
 
@@ -84,8 +91,6 @@ exec "$_bin" "$@"
 
 ```
 
-
-
 ## Upgrade
 
 Rerun the manager at any time. It detects the latest stable release, does nothing if that version is already active, and otherwise installs it alongside existing versions and repoints the wrapper.
@@ -135,3 +140,15 @@ Installed version and archive directories are excluded from git by `.gitignore`,
 - [Archetype 5 pattern document](https://github.com/steelcj/osat-fluent/blob/main/en/docs/osat-fluent--archetype-5--self-contained-binary-v0-1-1.md)
 - [User-space installation specification](https://github.com/steelcj/osat-fluent/blob/main/en/docs/osat--user-space-installation-specification-v0-3-0.md)
 
+## License
+
+This software, *osat-fluent-rclone-tool*, by **Christopher Steel**, with AI assistance from **Claude Sonnet 4.6 (Anthropic)**, is licensed under the [GNU General Public License v3.0 or later (GPL-3.0-or-later)](https://www.gnu.org/licenses/gpl-3.0.html).
+
+## Changelog
+
+| Version | Status | Notes |
+|---------|--------|-------|
+| 0.1.5 | Draft | en/README.md merge of old and new |
+| 0.1.5 | Draft | Merged the "move into project directory" install step and a new Confirmation section (which rclone, wrapper content example) recovered from an earlier README draft |
+| 0.1.4 | Draft | en/README.md verson fix test |
+| 0.1.0 | Draft | Initial release, OSAT Fluent Archetype 5 convention, migrated from the older rclone-tool repository |

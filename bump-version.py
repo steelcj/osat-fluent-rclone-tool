@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""bump-version.py — update VERSION, en/README.md, and prepare a versioned commit.
+"""bump-version.py — update VERSION, docs/en/README.md, and prepare a versioned commit.
 
 Updates the VERSION file, inserts a new row at the top of the changelog table in
-en/README.md, and updates the Version line in en/README.md. Then stages those two
+docs/en/README.md, and updates the Version line in docs/en/README.md. Then stages those two
 files and prints the git commands to complete the release. Does not commit or tag
 automatically — the operator confirms the staged diff before proceeding.
 
@@ -30,7 +30,7 @@ from pathlib import Path
 
 REPO_DIR = Path(__file__).resolve().parent
 VERSION_PATH = REPO_DIR / "VERSION"
-EN_README_PATH = REPO_DIR / "en" / "README.md"
+EN_README_PATH = REPO_DIR / "docs" / "en" / "README.md"
 
 VALID_STATUSES = {"Draft", "Review", "Stable"}
 
@@ -62,7 +62,7 @@ def update_version_file(new_version: str) -> None:
 
 def update_en_readme(new_version: str, status: str, notes: str) -> None:
     if not EN_README_PATH.is_file():
-        fail(f"en/README.md not found at {EN_README_PATH}")
+        fail(f"docs/en/README.md not found at {EN_README_PATH}")
 
     content = EN_README_PATH.read_text(encoding="utf-8")
 
@@ -75,7 +75,7 @@ def update_en_readme(new_version: str, status: str, notes: str) -> None:
         flags=re.MULTILINE,
     )
     if version_subs == 0:
-        fail("could not find 'Version: x.y.z' line in en/README.md")
+        fail("could not find 'Version: x.y.z' line in docs/en/README.md")
 
     # Insert new row at the top of the changelog table (below the header and separator rows)
     new_row = f"| {new_version} | {status} | {notes} |"
@@ -84,7 +84,7 @@ def update_en_readme(new_version: str, status: str, notes: str) -> None:
         re.MULTILINE,
     )
     if not changelog_pattern.search(content):
-        fail("could not find the Changelog table in en/README.md; check the table format")
+        fail("could not find the Changelog table in docs/en/README.md; check the table format")
 
     content = changelog_pattern.sub(
         f"\\g<1>{new_row}\n",
@@ -93,7 +93,7 @@ def update_en_readme(new_version: str, status: str, notes: str) -> None:
     )
 
     EN_README_PATH.write_text(content, encoding="utf-8")
-    log(f"en/README.md Version line and Changelog updated")
+    log(f"docs/en/README.md Version line and Changelog updated")
 
 
 def stage_files() -> None:
@@ -105,7 +105,7 @@ def stage_files() -> None:
     )
     if result.returncode != 0:
         fail(f"git add failed: {result.stderr.strip()}")
-    log("staged VERSION and en/README.md")
+    log("staged VERSION and docs/en/README.md")
 
 
 def print_next_steps(new_version: str) -> None:
