@@ -100,9 +100,10 @@ Installed version and archive directories are excluded from git by `.gitignore`,
 - [rclone documentation](https://rclone.org/docs/)
 - [rclone releases](https://github.com/rclone/rclone/releases)
 - [OSAT Fluent governance repository](https://github.com/steelcj/osat-fluent)
-- [Test](https://github.com/steelcj/osat-fluent/tree/main/en/docs)
-- [Archetype 5 pattern document](https://github.com/steelcj/osat-fluent/blob/main/en/docs/osat-fluent--archetype-5--self-contained-binary-v0-1-1.md)
-- [User-space installation specification](https://github.com/steelcj/osat-fluent/blob/main/en/docs/osat--user-space-installation-specification-v0-3-0.md)
+- [OSAT Fluent English Govenance](https://github.com/steelcj/osat-fluent/tree/main/en/docs)
+  - This includes latest versions of the following as well as other govenance in English:
+    - osat-fluent--archetype-5--self-contained-binary
+    - osat--user-space-installation-specification
 
 ## Languages
 
