@@ -30,7 +30,7 @@ from pathlib import Path
 
 REPO_DIR = Path(__file__).resolve().parent
 VERSION_PATH = REPO_DIR / "VERSION"
-EN_README_PATH = REPO_DIR / "docs" / "en" / "README.md"
+EN_README_PATH = REPO_DIR / "en" / "docs" / "README.md"
 
 VALID_STATUSES = {"Draft", "Review", "Stable"}
 
