@@ -23,7 +23,11 @@ Clicking a box jumps to that section, in renderers that support mermaid click li
 
 If you are setting this repository up for the first time, use Initial commit workflow below. If a first commit already exists and you are releasing a new version, use Subsequent version bump workflow instead. The two paths share the same underlying tools, tag and push, but differ in what gets staged, what the commit message looks like, and whether `bump-version.py` is involved at all.
 
-## If using ssh-agent ensure id is added
+## Connectivity
+
+### using ssh-agent ensure id is added
+
+(this should be moved to a connectivity document for ssh specifically)
 
 Is ssh-agent running?
 
